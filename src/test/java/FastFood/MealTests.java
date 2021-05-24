@@ -31,7 +31,7 @@ public class MealTests {
                 .withName("Single Burger meal")
                 .build();
 
-        assertEquals("", meal.toString());
+        assertEquals("Single Burger meal\nSINGLE BURGER\n\tBEEF ON BUN\nMEDIUM FRENCH FRIES\nMEDIUM COKE W/ICE\n5.0", meal.toString());
     }
 
     @Test

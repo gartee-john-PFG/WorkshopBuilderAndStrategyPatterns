@@ -9,11 +9,12 @@ public class DrinkBuilderTests {
     @Test
     public void aDefaultCoke_ReturnsDrinkMediumCokeWithIce() {
         Drink coke = new DrinkBuilder()
+                .atPrice(1.5f)
                 .of(DrinkType.coke)
                 .build();
 
-        assertEquals("COKE", coke.getName());
-        assertEquals("MEDIUM COKE W/ICE:\t1.5", coke.toString());
+
+        assertEquals("\nMEDIUM COKE W/ICE:\t1.5", coke.toString());
     }
 
     @Test
@@ -22,10 +23,10 @@ public class DrinkBuilderTests {
                 .of(DrinkType.coke)
                 .size(ItemSize.large)
                 .withModification(DrinkModification.no_ice)
+                .atPrice(2.0f)
                 .build();
 
-        assertEquals("COKE", coke.getName());
-        assertEquals("LARGE COKE W/NO ICE:\t2.0", coke.toString());
+        assertEquals("\nLARGE COKE W/NO ICE:\t2.0", coke.toString());
     }
 
     @Test
@@ -33,16 +34,20 @@ public class DrinkBuilderTests {
         Drink smCoke = new DrinkBuilder()
                 .of(DrinkType.coke)
                 .size(ItemSize.small)
+                .atPrice(1.0f)
                 .build();
         Drink medCoke = new DrinkBuilder()
                 .of(DrinkType.coke)
+                .atPrice(1.5f)
                 .size(ItemSize.medium)
                 .build();
         Drink lgCoke = new DrinkBuilder()
                 .of(DrinkType.coke)
                 .size(ItemSize.large)
+                .atPrice(2.0f)
                 .build();
         Drink exLgCoke = new DrinkBuilder()
+                .atPrice(2.5f)
                 .of(DrinkType.coke)
                 .size(ItemSize.extra_large)
                 .build();

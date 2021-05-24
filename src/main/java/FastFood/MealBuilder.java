@@ -19,7 +19,7 @@ public class MealBuilder {
 
         price = 0.0f;
         items = new ArrayList<>();
-        name = null;
+        name = "CUSTOM MEAL";
         this.menu = DefaultMenu.getMenu();
     }
 

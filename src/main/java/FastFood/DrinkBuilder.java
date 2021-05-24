@@ -39,25 +39,6 @@ public class DrinkBuilder {
         return new Drink(this.type, this.size, this.modification, this.price);
     }
 
-    private void setDefaultPrice() {
-        switch(this.size){
-            case small:
-                this.price = 1.00f;
-                break;
-            case medium:
-                this.price = 1.50f;
-                break;
-            case large:
-                this.price = 2.00f;
-                break;
-            case extra_large:
-                this.price = 2.50f;
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid ItemSize in Drink");
-        }
-    }
-
     private void validateDrink() {
 //        if(name == null)
 //            throw new IllegalArgumentException("Name of drink not specified");

@@ -33,15 +33,6 @@ public class Side implements Item {
 
     }
 
-    Side of(SideOrder sideOrder) {
-        type = sideOrder;
-        return this;
-    }
-
-    Side size(ItemSize size) {
-        this.size = size;
-        return this;
-    }
 
     @Override
     public String getName() {

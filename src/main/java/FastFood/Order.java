@@ -6,9 +6,10 @@ import java.util.List;
 public class Order  implements Item{
     private final String customerName;
     private final List<Item> meals = new ArrayList<Item>();
-
+    private Float price;
     public Order(String customerName, List<Item> items){
         this.customerName = customerName;
+        this.price = 0.0f;
         for(Item item: items){
             if(item instanceof Sandwich)
                 this.meals.add(new Sandwich((Sandwich) item));
@@ -26,16 +27,17 @@ public class Order  implements Item{
 
     @Override
     public Float getPrice() {
-        return null;
+        return this.price;
     }
 
     @Override
     public String toString(){
         String order =   this.customerName + ":";
         for (Item item: meals)  {
-            order += "\t" + item.toString() + "\n";
+            order +=  item.toString();
+            price += item.getPrice() == null ? 0.0f : item.getPrice();
         }
 
-        return order;
+        return order + "\n" + this.price.toString();
     }
 }
