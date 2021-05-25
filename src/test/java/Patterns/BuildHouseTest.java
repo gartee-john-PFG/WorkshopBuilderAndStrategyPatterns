@@ -1,11 +1,10 @@
 package Patterns;
 
 // import Patterns.BuildAHouse;
-import org.checkerframework.checker.units.qual.C;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BuildHouseTest {
     @Test
@@ -36,5 +35,17 @@ public class BuildHouseTest {
         House tipi = engineer.getHouse();
 
         assertEquals("Nothing", tipi.getBasement(), "getBasement() should return 'Nothing'");
+    }
+
+    //  Implement the builder pattern to create a steel house
+    @Test
+    @Disabled
+    void buildSteelHouseTest() {
+        HouseBuilder builder = new SteelHouseBuilder();
+        CivilEngineerDirector engineerDirector = new CivilEngineerDirector(builder);
+
+//        House steelHome = engineerDirector.getHouse();
+//
+//        assertEquals("Steel Girders and Shingles", engineer.getHouse().getRoof());
     }
 }

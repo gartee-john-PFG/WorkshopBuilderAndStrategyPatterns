@@ -24,6 +24,7 @@ public class UserBuilder {
         return this;
     }
 
+    //  notice we are passing the Builder into the c-tor in this implementation
     public User build() {
         User user =  new User(this);
         validateUserObject(user);

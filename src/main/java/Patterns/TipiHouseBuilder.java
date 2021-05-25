@@ -1,5 +1,8 @@
 package Patterns;
 
+//  this is a bad implementation, found on the internet.  It does not create an immutable object and
+//  also creates the object in an inconsistent state.  For these reasons, this is not recommended.
+
 public class TipiHouseBuilder implements HouseBuilder {
     private House house;
 
