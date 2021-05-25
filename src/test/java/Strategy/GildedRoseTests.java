@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class GildedRoseTests {
     @Test
     void approveGildedRose() {
-        String[] names = {"foo", "Aged Brie", "Backstage passes to a TAFKAL80ETC concert", "Sulfuras, Hand of Ragnaros"};
+        String[] names = {"foo", Item.AGED_BRIE, Item.BACKSTAGE_PASS, Item.SULFURAS};
         Integer[] sellins = { -1, 0, 1, 5, 6, 10, 11, 12, 6, 2 };
         Integer[] qualities = { 0, 1, 48, 49, 50 };
         CombinationApprovals.verifyAllCombinations(
@@ -20,7 +20,7 @@ public class GildedRoseTests {
         Item[] items = new Item[] { new Item(name, sellIn, quality) };
         GildedRose gildedRose = new GildedRose(items);
         gildedRose.updateQuality();
-        return gildedRose.items[0];
+        return gildedRose.items.get(0);
     }
 
 }
