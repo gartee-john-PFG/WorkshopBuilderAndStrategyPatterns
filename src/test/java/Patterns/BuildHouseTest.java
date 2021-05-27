@@ -6,6 +6,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//  Exercise 1
+//      modify the HouseBuilder series of classes to be a true Builder Pattern
+//
+//  Exercise 2
+//      implement a new builder scenario, using the last test 'buildSteelHouseTest()' in this file
+//      to generate a steel house.
+
 public class BuildHouseTest {
     @Test
     void buildIglooTest() {
@@ -44,8 +51,6 @@ public class BuildHouseTest {
         HouseBuilder builder = new SteelHouseBuilder();
         CivilEngineerDirector engineerDirector = new CivilEngineerDirector(builder);
 
-//        House steelHome = engineerDirector.getHouse();
-//
-//        assertEquals("Steel Girders and Shingles", engineer.getHouse().getRoof());
+
     }
 }
