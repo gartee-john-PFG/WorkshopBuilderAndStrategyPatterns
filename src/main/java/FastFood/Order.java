@@ -17,6 +17,8 @@ public class Order  implements Item{
                 this.meals.add(new Drink((Drink) item));
             else if( item instanceof Side)
                 this.meals.add(new Side((Side) item));
+            else if( item instanceof Meal)
+                this.meals.add(new Meal((Meal) item));
         }
     }
 
@@ -34,10 +36,20 @@ public class Order  implements Item{
     public String toString(){
         String order =   this.customerName + ":";
         for (Item item: meals)  {
-            order +=  item.toString();
+            order += "\n\t" + item.toString();
             price += item.getPrice() == null ? 0.0f : item.getPrice();
         }
 
         return order + "\n" + this.price.toString();
+    }
+
+    public String getOrderText() {
+        StringBuilder result = new StringBuilder();
+
+        for(Item mealItem: meals){
+            result.append(mealItem.getName());
+        }
+
+        return result.toString();
     }
 }

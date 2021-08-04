@@ -2,11 +2,7 @@ package FastFood;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
 
 public class MealBuilder {
     MenuItem type;
@@ -16,11 +12,9 @@ public class MealBuilder {
     private String name;
     MealBuilder() {
         type = MenuItem.custom_meal;
-
         price = 0.0f;
         items = new ArrayList<>();
         name = "CUSTOM MEAL";
-        this.menu = DefaultMenu.getMenu();
     }
 
     public MealBuilder fromMenu(Map<MenuItem, Item> menu) {
@@ -29,6 +23,10 @@ public class MealBuilder {
     }
 
     public MealBuilder fromMenuItem(MenuItem menuItem) {
+
+        if(menu == null)
+            menu = DefaultMenu.getMenu();
+
         Meal meal;
 
         if (menu.containsKey(menuItem)) {
@@ -36,10 +34,11 @@ public class MealBuilder {
             this.type = menuItem;
             this.price = meal.getPrice();
             this.items.add(meal);
-            this.name = "";
+            this.name = meal.getName();
         } else {
             meal = new MealBuilder().build();
             this.type = menuItem.custom_meal;
+            this.name = "CUSTOM MEAL";
             this.price = 0.0f;
         }
 
@@ -76,27 +75,28 @@ public class MealBuilder {
         List<Drink> drinks = new ArrayList<>();
         List<Side> sides = new ArrayList<>();
 
+        for(Item item: this.items)
+            if(item instanceof Meal)
+                return new Meal((Meal) item);
+
         for (Item item : this.items)
             if (item instanceof Sandwich)
-                sandwiches.add((Sandwich) item);
+                sandwiches.add(new Sandwich((Sandwich) item));
 
         for (Item item : this.items)
             if (item instanceof Drink)
-                drinks.add((Drink) item);
+                drinks.add(new Drink((Drink) item));
 
         for (Item item : this.items)
             if (item instanceof Side)
-                sides.add((Side) item);
+                sides.add(new Side((Side) item));
 
-        Meal meal = new Meal(this.name + "\n",
+        Meal meal = new Meal(this.name,
                 sandwiches,
                 drinks,
                 sides,
                 this.price);
 
         return meal;
-//
-//        meal.setName(type.toString().replace('_', ' ').toUpperCase(Locale.ROOT));
-//        return meal;
     }
 }

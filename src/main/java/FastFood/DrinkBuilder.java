@@ -36,7 +36,7 @@ public class DrinkBuilder {
         validateDrink();
         //setDefaultPrice();
 
-        return new Drink(this.type, this.size, this.modification, this.price);
+        return new Drink(this.type, this.size, this.modification, this.price, this.name);
     }
 
     private void validateDrink() {
@@ -53,4 +53,8 @@ public class DrinkBuilder {
 
     }
 
+    public DrinkBuilder withName(String name) {
+        this.name = name;
+        return this;
+    }
 }

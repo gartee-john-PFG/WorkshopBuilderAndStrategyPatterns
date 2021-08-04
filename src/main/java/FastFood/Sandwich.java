@@ -68,6 +68,52 @@ public class Sandwich implements Item {
         return name;
     }
 
+    private String buildDescription() {
+        StringBuilder result = new StringBuilder();
+        long protienCount = proteins.stream().count();
+
+        if (protienCount == 0l) {
+            result.append("VEGGIE");
+        } else if (protienCount == 1l) {
+            result.append("SINGLE " + proteins.get(0).toString().toUpperCase(Locale.ROOT));
+        } else if (protienCount == 2l) {
+            result.append("DOUBLE");
+        } else if (protienCount == 3l) {
+            result.append("TRIPLE");
+        } else if (protienCount == 4l) {
+            result.append("QUAD");
+        } else {
+            result.append("BIG " + String.valueOf(protienCount));
+        }
+
+        switch (this.wrapping) {
+            case bun:
+                result.append(" ON " + this.wrapping.toString().toUpperCase(Locale.ROOT));
+                break;
+        }
+
+        StringBuilder toppingsAndCondiments = new StringBuilder();
+
+        for (Topping topping : toppings) {
+            toppingsAndCondiments.append(topping.toString().toUpperCase(Locale.ROOT) + ", " );
+        }
+
+        for (Condiment condiment : condiments) {
+            toppingsAndCondiments.append(condiment.toString().toUpperCase(Locale.ROOT) + ", ");
+        }
+
+        if(toppingsAndCondiments.length() > 0)
+            toppingsAndCondiments = toppingsAndCondiments.delete(toppingsAndCondiments.length() - 2, toppingsAndCondiments.length());
+
+        if( toppings.stream().count() + condiments.stream().count() > 1){
+            int lastComma = toppingsAndCondiments.lastIndexOf(", ");
+            toppingsAndCondiments.replace(lastComma, lastComma + 2, ", AND ");
+        }
+
+        return toppingsAndCondiments.length() == 0 ? result.toString() :
+                result.append(" WITH " + toppingsAndCondiments.toString()).toString();
+    }
+
     @Override
     public Float getPrice() {
         return price;
@@ -75,37 +121,8 @@ public class Sandwich implements Item {
 
     @Override
     public String toString() {
-        StringBuilder protein = new StringBuilder();
-        StringBuilder topping = new StringBuilder();
-        StringBuilder condiment = new StringBuilder();
-
-        for (Protein p : this.proteins) {
-            protein.append(protein.length() > 0 ? ", " : "");
-            protein.append(p.toString().toUpperCase(Locale.ROOT).replace('_', ' '));
-        }
-
-        protein.append(" ON " + this.wrapping.toString().toUpperCase(Locale.ROOT).replace('_', ' '));
-
-
-        if (toppings.size() > 0)
-            topping.append("TOPPED WITH\n\t\t");
-
-        for (Topping t : this.toppings) {
-            topping.append(t.toString().toUpperCase(Locale.ROOT).replace('_', ' ') + ", ");
-        }
-
-        if (condiments.size() > 0)
-            condiment.append("WITH \n\t\t");
-
-        for (Condiment c : this.condiments) {
-            condiment.append(c.toString().toUpperCase(Locale.ROOT).replace('_', ' ') + ", ");
-        }
-
-        return getName()
-                + "\n\t"
-                + protein
-                + (topping.length() > 2 ? topping.substring(0, topping.length()-2) : topping)
-                + (condiment.length() > 2 ? condiment.substring(0, condiment.length()-2) : condiment)
-                + (price == null ? "" : price);
+        return getName() + (getName().length() == 0 ? "" : "\n\t")
+                + buildDescription()
+                + (price == null ? "" : "\n\t" + price);
     }
 }

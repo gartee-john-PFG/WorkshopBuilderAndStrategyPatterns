@@ -3,14 +3,13 @@ package FastFood;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class MealTests {
+public class MealBuilderTests {
     @Test
     public void emptyMealReturnsNoItems() {
         Meal meal = new MealBuilder().build();
 
-        assertEquals("CUSTOM MEAL\n", meal.getName());
+        assertEquals("CUSTOM MEAL", meal.getName());
     }
 
     @Test
@@ -28,14 +27,14 @@ public class MealTests {
                         .of(SideOrder.french_fries)
                         .build())
                 .atPrice(5.00f)
-                .withName("Single Burger meal")
+                .withName("Single Burger Meal")
                 .build();
 
-        assertEquals("Single Burger meal\nSINGLE BURGER\n\tBEEF ON BUN\nMEDIUM FRENCH FRIES\nMEDIUM COKE W/ICE\n5.0", meal.toString());
+        assertEquals("Single Burger Meal\n\tSINGLE BURGER\n\tSINGLE BEEF ON BUN\n\tMEDIUM FRENCH FRIES\n\tMEDIUM COKE W/ICE\n\t5.0", meal.toString());
     }
 
     @Test
-    public void defaultMealWtihSmallSizeReturnsAllSmallItems() {
+    public void defaultMealWithSmallSizeReturnsAllSmallItems() {
 
     }
 
@@ -61,12 +60,11 @@ public class MealTests {
 
     @Test
     public void defaultMealCanBeCustomizedOnIndividualItems() {
-
+        //  how would we customize the toppings on an existing sandwich from the menu?
     }
 
     @Test
     public void defaultMealCanHaveExtraItemsAddedToIt() {
-
+        // Create an order with an extra item added to the meal
     }
-
 }

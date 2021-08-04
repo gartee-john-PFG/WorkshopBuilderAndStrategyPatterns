@@ -3,6 +3,8 @@ package Strategy;
 import org.approvaltests.combinations.CombinationApprovals;
 import org.junit.jupiter.api.Test;
 
+//  exercise:  add Conjured items per the README.MD description
+
 public class GildedRoseTests {
     @Test
     void approveGildedRose() {
@@ -22,5 +24,4 @@ public class GildedRoseTests {
         gildedRose.updateQuality();
         return gildedRose.items.get(0);
     }
-
 }

@@ -46,7 +46,7 @@ public class Side implements Item {
 
     @Override
     public String toString() {
-        return "\n" + getSizeDescription()
+        return getSizeDescription()
                 + " "
                 + type.toString().replace('_',' ').toUpperCase(Locale.ROOT)
                 + (this.price == null ? "" : ":\t" + getPrice());

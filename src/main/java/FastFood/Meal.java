@@ -1,6 +1,5 @@
 package FastFood;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,13 +36,29 @@ public class Meal implements Item {
             this.sides.add(new Side(s));
     }
 
+    public Meal(Meal in){
+        this.name = in.getName();
+        this.price = in.getPrice();
+        this.sandwiches = new ArrayList<>();
+        this.sides = new ArrayList<>();
+        this.drinks = new ArrayList<>();
+
+        for(Sandwich sandwich: in.sandwiches){
+            this.sandwiches.add(new Sandwich(sandwich));
+        }
+
+        for(Drink drink: in.drinks){
+            this.drinks.add(new Drink(drink));
+        }
+
+        for(Side side: in.sides){
+            this.sides.add(new Side(side));
+        }
+    }
+
     @Override
     public String getName() {
         return name;
-    }
-
-    public void setName(String mealName) {
-        name = mealName;
     }
 
     @Override
@@ -70,10 +85,13 @@ public class Meal implements Item {
                 drink.append(d.toString());
 
         return getName()
+                + "\n\t"
                 + sandwich.toString()
+                + "\n\t"
                 + side.toString()
+                + "\n\t"
                 + drink.toString()
-                + "\n"
+                + "\n\t"
                 + price;
     }
 }
