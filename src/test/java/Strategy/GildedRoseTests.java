@@ -3,7 +3,8 @@ package Strategy;
 import org.approvaltests.combinations.CombinationApprovals;
 import org.junit.jupiter.api.Test;
 
-//  exercise:  add Conjured items per the README.MD description
+//  exercise:  Strategy Workshop: add Conjured items per the README.MD description found with the source
+//  exercise:  Factory Workshop:  add factory method for implementing the Conjured items per the README.MD
 
 public class GildedRoseTests {
     @Test

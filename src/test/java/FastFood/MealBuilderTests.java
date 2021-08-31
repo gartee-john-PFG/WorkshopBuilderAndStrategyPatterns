@@ -34,6 +34,14 @@ public class MealBuilderTests {
     }
 
     @Test
+    void tripleBurgerMealFromMenuReturnsCorrectDescriptionAndPrice(){
+        Meal meal = new MealBuilder()
+                .fromMenuItem(MenuItem.triple_burger_meal)
+                .build();
+
+        assertEquals("TRIPLE WONDERFUL MEAL\n\tTRIPLE BEEF ON BUN WITH PICKLES, ONION, CATSUP, AND MUSTARD\n\tMEDIUM FRENCH FRIES WITH SALT, PEPPER, AND CATSUP\n\tMEDIUM COKE W/ICE\n\t5.0", meal.toString());
+    }
+    @Test
     public void defaultMealWithSmallSizeReturnsAllSmallItems() {
 
     }

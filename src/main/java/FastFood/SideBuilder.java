@@ -2,6 +2,7 @@ package FastFood;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class SideBuilder {
     String name;
@@ -9,6 +10,7 @@ public class SideBuilder {
     ItemSize size;
     List<Condiment> condiments;
     Float price;
+    private Map<MenuItem, Item> menu;
 
     public SideBuilder(){
         type = SideOrder.none;
@@ -69,5 +71,23 @@ public class SideBuilder {
 
         if(size == ItemSize.none)
             size = ItemSize.medium;
+    }
+
+    public SideBuilder fromMenuItem(MenuItem menuItem) {
+        if(this.menu == null)
+            this.menu = DefaultMenu.getMenu();
+
+        Side side;
+
+        if(menu.containsKey(menuItem)){
+            side = (Side) menu.get(menuItem);
+            this.type = side.type;
+            this.size = side.size;
+            this.price = side.price;
+            this.condiments.addAll(side.condiments);
+            this.name = side.getName();
+        }
+
+        return this;
     }
 }

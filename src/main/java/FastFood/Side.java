@@ -15,10 +15,7 @@ public class Side implements Item {
         this.size = size;
         this.price = price;
         this.condiments = new ArrayList<>();
-
-        for (Condiment condiment : condiments) {
-            this.condiments.add(condiment);
-        }
+        this.condiments.addAll(condiments);
     }
 
     Side(Side in) {
@@ -27,9 +24,7 @@ public class Side implements Item {
         this.price = in.price;
 
         this.condiments = new ArrayList<>();
-
-        for(Condiment condiment: in.condiments)
-            this.condiments.add(condiment);
+        this.condiments.addAll(in.condiments);
 
     }
 
@@ -48,11 +43,49 @@ public class Side implements Item {
     public String toString() {
         return getSizeDescription()
                 + " "
-                + type.toString().replace('_',' ').toUpperCase(Locale.ROOT)
+                + type.toString().replace('_', ' ').toUpperCase(Locale.ROOT)
+                + getCondimentsDescription()
                 + (this.price == null ? "" : ":\t" + getPrice());
     }
 
+    private String getCondimentsDescription() {
+        StringBuilder result = new StringBuilder();
+
+        if (condiments.size() > 0)
+            result.append(" WITH ");
+
+        for (Condiment condiment : condiments) {
+            result
+                    .append(condiment
+                            .toString()
+                            .toUpperCase(Locale.ROOT)
+                            .replace('_', ' '))
+                    .append(", ");
+
+        }
+
+        if (condiments.size() > 0) {
+            removeTrailingCommaAndSpace(result);
+            int commaSpacePosition = result.lastIndexOf(", ");
+            if(commaSpacePosition >= 0)
+                result.replace(commaSpacePosition, commaSpacePosition + ", ".length(), ", AND ");
+        }
+
+        if(condiments.size() == 2){
+            int start = result.indexOf(", AND");
+            result.replace(start, start + ", AND".length(), " AND");
+        }
+
+        return result.toString();
+    }
+
+    private StringBuilder removeTrailingCommaAndSpace(StringBuilder result) {
+        int lastCommaSpacePosition = result.lastIndexOf(", ");
+        return result.replace(lastCommaSpacePosition, lastCommaSpacePosition + ", ".length(), "");
+    }
+
     private String getSizeDescription() {
-        return size.toString().toUpperCase(Locale.ROOT);
+
+        return size.toString().toUpperCase(Locale.ROOT).replace("_", " ");
     }
 }

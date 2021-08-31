@@ -45,7 +45,10 @@ class Drink implements Item {
 
     @Override
     public String getName() {
-        return name == null ? type.toString().toUpperCase(Locale.ROOT) : this.name;
+        String drinkName = name == null ?
+                type.toString().toUpperCase(Locale.ROOT) :
+                this.name;
+        return drinkName.replace('_',' ');
     }
 
     @Override
@@ -59,7 +62,7 @@ class Drink implements Item {
         drinkDescription += " ";
         drinkDescription += getName();
         drinkDescription += getOptionalModificationDescription();
-        drinkDescription += (price == null ? "" : ":\t" + price.toString());
+        drinkDescription += (price == null ? "" : ":\t" + price);
         return drinkDescription.length() > 0 ? drinkDescription : "";
 
     }
@@ -73,6 +76,7 @@ class Drink implements Item {
     }
 
     private String getSizeDescription() {
+
         return size.toString().toUpperCase(Locale.ROOT);
     }
 }

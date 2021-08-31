@@ -2,7 +2,11 @@ package FastFood;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class DrinkBuilderTests {
     @Test
@@ -64,6 +68,70 @@ public class DrinkBuilderTests {
         assertEquals(2.50f, exLgCoke.getPrice());
         assertEquals("Extra-large Coke", exLgCoke.getName());
     }
+
+    @Test
+    void orderingADrinkFromTheMenuReturnsCorrectDescriptionAndPrice(){
+        Drink drink = new DrinkBuilder()
+        .fromMenuItem(MenuItem.large_drink)
+        .build();
+
+        assertEquals("LARGE COKE W/ICE:\t1.5", drink.toString());
+    }
+
+    @Test
+    void orderingMountainDewFromTheMenuReturnsCorrectDescription(){
+        Drink drink = new DrinkBuilder()
+                .fromMenuItem(MenuItem.medium_drink)
+                .of(DrinkType.mountain_dew)
+                .build();
+
+        assertEquals("MEDIUM MOUNTAIN DEW W/ICE:\t1.25", drink.toString());
+    }
+
+    @Test
+    public void orderingItemNotOnMenuThrowsInvalidArgumentException(){
+        Map<MenuItem, Item> customMenu = new HashMap<>(){
+            {
+                put(MenuItem.large_drink, new DrinkBuilder()
+                        .of(DrinkType.coffee)
+                        .size(ItemSize.large)
+                        .atPrice(1F)
+                        .withModification(DrinkModification.none)
+                        .build()
+                );
+            }
+        };
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            Drink drink = new DrinkBuilder()
+                    .fromMenu(customMenu)
+                    .fromMenuItem(MenuItem.small_drink)
+                    .build();
+        });
+    }
+
+    @Test
+    public void orderFromCustomMenuReturnsCorrectDescription(){
+        Map<MenuItem, Item> customMenu = new HashMap<>(){
+            {
+                put(MenuItem.large_drink, new DrinkBuilder()
+                .of(DrinkType.coffee)
+                        .size(ItemSize.large)
+                        .atPrice(1F)
+                        .withModification(DrinkModification.none)
+                        .build()
+                );
+            }
+        };
+
+        Drink drink = new DrinkBuilder()
+                .fromMenu(customMenu)
+                .fromMenuItem(MenuItem.large_drink)
+                .build();
+
+        assertEquals("LARGE COFFEE:\t1.0", drink.toString());
+    }
+
     @Test
     public void buildAnExtraLargeMountainDewWithExtraIceThatCostsOneDollarTwentyFiveCents(){
         //  add drink builder implementation and remove comments from the asserts, below

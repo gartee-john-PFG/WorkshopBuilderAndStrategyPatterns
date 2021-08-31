@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class OrderBuilderTests {
 
     @Test
-    public void OrderingJustACokeReturnsProperDescription() {
+    public void orderingJustACokeReturnsProperDescriptionAndPrice() {
         Order order = new OrderBuilder()
                 .withItem(new DrinkBuilder()
                         .of(DrinkType.coke)
@@ -19,7 +19,7 @@ public class OrderBuilderTests {
     }
 
     @Test
-    public void OrderingTwoCokesReturnsProperDescription() {
+    public void orderingTwoCokesReturnsProperDescriptionAndPrice() {
         Order order = new OrderBuilder()
                 .withItem(new DrinkBuilder()
                         .of(DrinkType.coke)
@@ -35,7 +35,7 @@ public class OrderBuilderTests {
     }
 
     @Test
-    public void orderingCokeWithCustomerNameReturnsProperDescription() {
+    public void orderingCokeWithCustomerNameReturnsProperDescriptionAndPrice() {
         Order order = new OrderBuilder()
                 .forCustomer("Joe Blow")
                 .withItem(new DrinkBuilder()
@@ -52,7 +52,7 @@ public class OrderBuilderTests {
     }
 
     @Test
-    public void OrderingCokeAndSmFryReturnsProperDescription() {
+    public void orderingCokeAndSmFryReturnsProperDescriptionAndPrice() {
         Order order = new OrderBuilder()
                 .forCustomer("Joe Blow")
                 .withItem(new DrinkBuilder()
@@ -80,6 +80,15 @@ public class OrderBuilderTests {
 
         assertEquals("Joseph Blowhard", order.getName());
         assertEquals("SINGLE WONDERFUL MEAL", order.getOrderText());
-        assertEquals("Joseph Blowhard:\n\tSINGLE WONDERFUL MEAL\n\tSINGLE BEEF ON BUN WITH PICKLES, ONION, CATSUP, AND MUSTARD\n\tMEDIUM FRENCH FRIES\n\tMEDIUM COKE W/ICE\n\t5.0\n5.0", order.toString());
+        assertEquals("Joseph Blowhard:\n\tSINGLE WONDERFUL MEAL\n\tSINGLE BEEF ON BUN WITH PICKLES, ONION, CATSUP, AND MUSTARD\n\tMEDIUM FRENCH FRIES WITH SALT, PEPPER, AND CATSUP\n\tMEDIUM COKE W/ICE\n\t5.0\n5.0", order.toString());
     }
+//
+//    @Test
+//    void orderDoubleBurgerMealWithAdditionalLargeCokeAndNoIceAndSmallFriesReturnsProperDescription(){
+//        Order order = new OrderBuilder()
+//                .withItem(new MealBuilder()
+//                .fromMenuItem(MenuItem.double_burger_meal))
+//                .withItem(new DrinkBuilder()
+//                .fromM)
+//    }
 }

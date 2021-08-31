@@ -24,18 +24,10 @@ public class Sandwich implements Item {
         this.proteins = new ArrayList<>();
         this.condiments = new ArrayList<>();
         this.toppings = new ArrayList<>();
-
         this.wrapping = wrapping;
-
-        for (Protein p : proteins)
-            this.proteins.add(p);
-
-        for (Topping t : toppings)
-            this.toppings.add(t);
-
-        for (Condiment c : condiments)
-            this.condiments.add(c);
-
+        this.proteins.addAll(proteins);
+        this.toppings.addAll(toppings);
+        this.condiments.addAll(condiments);
         this.price = price;
         this.name = name;
 
@@ -45,19 +37,9 @@ public class Sandwich implements Item {
         this.proteins = new ArrayList<>();
         this.condiments = new ArrayList<>();
         this.toppings = new ArrayList<>();
-
-        for (Protein protein : in.proteins) {
-            proteins.add(protein);
-        }
-
-        for (Condiment condiment : in.condiments) {
-            condiments.add(condiment);
-        }
-
-        for (Topping topping : in.toppings) {
-            toppings.add(topping);
-        }
-
+        this.proteins.addAll(in.proteins);
+        this.condiments.addAll(in.condiments);
+        this.toppings.addAll(in.toppings);
         name = in.getName();
         wrapping = in.wrapping;
         price = in.price;
@@ -69,49 +51,63 @@ public class Sandwich implements Item {
     }
 
     private String buildDescription() {
-        StringBuilder result = new StringBuilder();
-        long protienCount = proteins.stream().count();
+        StringBuilder result = buildBasicSandwichDescription();
+        StringBuilder toppingsAndCondiments = buildToppingAndCondimentDescription();
 
-        if (protienCount == 0l) {
+        return combineSandwichToppingsAndCondimentsDescription(result, toppingsAndCondiments);
+    }
+
+    private String combineSandwichToppingsAndCondimentsDescription(StringBuilder result, StringBuilder toppingsAndCondiments) {
+        return toppingsAndCondiments.length() == 0 ? result.toString() :
+                result.append(" WITH ").append(toppingsAndCondiments).toString();
+    }
+
+    private StringBuilder buildToppingAndCondimentDescription() {
+        StringBuilder toppingsAndCondiments = new StringBuilder();
+
+        for (Topping topping : toppings) {
+            toppingsAndCondiments.append(topping.toString().toUpperCase(Locale.ROOT)).append(", ");
+        }
+
+        for (Condiment condiment : condiments) {
+            toppingsAndCondiments.append(condiment.toString().toUpperCase(Locale.ROOT)).append(", ");
+        }
+
+        if (toppingsAndCondiments.length() > 0) {
+            toppingsAndCondiments.delete(toppingsAndCondiments.length() - 2, toppingsAndCondiments.length());
+        }
+
+        if ((long) toppings.size() + (long) condiments.size() > 1) {
+            int lastComma = toppingsAndCondiments.lastIndexOf(", ");
+            String replacementString = toppings.size() + condiments.size() == 2 ? " AND " : ", AND ";
+            toppingsAndCondiments.replace(lastComma, lastComma + 2, replacementString);
+        }
+        return toppingsAndCondiments;
+    }
+
+    private StringBuilder buildBasicSandwichDescription() {
+        StringBuilder result = new StringBuilder();
+        long protienCount = proteins.size();
+
+        if (protienCount == 0L) {
             result.append("VEGGIE");
-        } else if (protienCount == 1l) {
-            result.append("SINGLE " + proteins.get(0).toString().toUpperCase(Locale.ROOT));
-        } else if (protienCount == 2l) {
-            result.append("DOUBLE");
-        } else if (protienCount == 3l) {
-            result.append("TRIPLE");
-        } else if (protienCount == 4l) {
-            result.append("QUAD");
+        } else if (protienCount == 1L) {
+            result.append("SINGLE ").append(proteins.get(0).toString().toUpperCase(Locale.ROOT));
+        } else if (protienCount == 2L) {
+            result.append("DOUBLE ").append(proteins.get(0).toString().toUpperCase(Locale.ROOT));
+        } else if (protienCount == 3L) {
+            result.append("TRIPLE ").append(proteins.get(0).toString().toUpperCase(Locale.ROOT));
         } else {
-            result.append("BIG " + String.valueOf(protienCount));
+            result.append("BIG ").append(protienCount).append(" ").append(proteins.get(0).toString().toUpperCase(Locale.ROOT));
         }
 
         switch (this.wrapping) {
             case bun:
-                result.append(" ON " + this.wrapping.toString().toUpperCase(Locale.ROOT));
+                result.append(" ON ").append(this.wrapping.toString().toUpperCase(Locale.ROOT));
                 break;
         }
 
-        StringBuilder toppingsAndCondiments = new StringBuilder();
-
-        for (Topping topping : toppings) {
-            toppingsAndCondiments.append(topping.toString().toUpperCase(Locale.ROOT) + ", " );
-        }
-
-        for (Condiment condiment : condiments) {
-            toppingsAndCondiments.append(condiment.toString().toUpperCase(Locale.ROOT) + ", ");
-        }
-
-        if(toppingsAndCondiments.length() > 0)
-            toppingsAndCondiments = toppingsAndCondiments.delete(toppingsAndCondiments.length() - 2, toppingsAndCondiments.length());
-
-        if( toppings.stream().count() + condiments.stream().count() > 1){
-            int lastComma = toppingsAndCondiments.lastIndexOf(", ");
-            toppingsAndCondiments.replace(lastComma, lastComma + 2, ", AND ");
-        }
-
-        return toppingsAndCondiments.length() == 0 ? result.toString() :
-                result.append(" WITH " + toppingsAndCondiments.toString()).toString();
+        return result;
     }
 
     @Override

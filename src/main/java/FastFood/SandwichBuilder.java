@@ -2,6 +2,7 @@ package FastFood;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class SandwichBuilder {
     private  SandwichWrapping wrapping;
@@ -10,6 +11,8 @@ public class SandwichBuilder {
     private List<Topping> toppings;
     private Float price;
     private String name;
+    private Map<MenuItem, Item> menu;
+    private MenuItem type;
 
     SandwichBuilder() {
         proteins = new ArrayList<>();
@@ -46,6 +49,26 @@ public class SandwichBuilder {
 
     public SandwichBuilder withName(String name){
         this.name = name;
+        return this;
+    }
+
+    public SandwichBuilder fromMenuItem(MenuItem menuSelection) {
+        if(menu == null)
+            menu = DefaultMenu.getMenu();
+
+        Sandwich sandwich;
+
+        if(menu.containsKey(menuSelection)){
+            sandwich = (Sandwich) menu.get(menuSelection);
+            this.type = menuSelection;
+            this.price = sandwich.getPrice();
+            this.name = sandwich.getName();
+            this.proteins.addAll(sandwich.proteins);
+            this.condiments.addAll(sandwich.condiments);
+            this.toppings.addAll(sandwich.toppings);
+            this.wrapping = sandwich.wrapping;
+        }
+
         return this;
     }
 

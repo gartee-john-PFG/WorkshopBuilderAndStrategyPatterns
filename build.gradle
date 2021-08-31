@@ -13,7 +13,7 @@ plugins {
     id 'jacoco' // allow code coverage report
 }
 
-group 'Strategy'
+// group 'Strategy'
 repositories {
     // Use JCenter for resolving dependencies.
     jcenter()
@@ -26,7 +26,9 @@ jacoco{
 pitest {
     junit5PluginVersion = '0.12' // added for pitest
     mutators = ['DEFAULTS', 'REMOVE_CONDITIONALS']
+    targetClasses = ["Strategy.*", "Patterns.*", "FastFood.*"]
 }
+
 dependencies {
     // Use JUnit Jupiter API for testing.
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
