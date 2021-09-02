@@ -1,0 +1,1 @@
+Type: Server, RAM = 64 GB, HDD = 4 x 4 TB SSD, CPU = Xeon i9
