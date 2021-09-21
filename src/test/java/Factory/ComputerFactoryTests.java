@@ -3,7 +3,7 @@ package Factory;
 import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
 
-public class TestFactory {
+public class ComputerFactoryTests {
     @Test
     public void testPCCreation() {
         Computer computer = ComputerFactory.getComputer("PC", "32 GB", "1 TB SSD", "Core i9");
