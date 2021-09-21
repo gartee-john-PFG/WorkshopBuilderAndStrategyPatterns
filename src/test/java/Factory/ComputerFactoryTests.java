@@ -1,6 +1,7 @@
 package Factory;
 
 import org.approvaltests.Approvals;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class ComputerFactoryTests {
@@ -17,5 +18,11 @@ public class ComputerFactoryTests {
 
         Approvals.verify(computer.toString());
 
+    }
+
+    @Test
+    @Disabled
+    public void testTabletCreation(){
+        //  create a tablet that returns a type of iPad with 16 GB of RAM, 32 GB of storage, and an apple M1 chip
     }
 }
