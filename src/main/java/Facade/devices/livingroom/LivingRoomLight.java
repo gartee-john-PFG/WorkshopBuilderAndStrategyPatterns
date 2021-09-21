@@ -23,9 +23,9 @@ public class LivingRoomLight extends Light {
     @Override
     public String toString() {
         return "LivingRoomLight{" +
-                "name='" + name + '\'' +
-                ", status=" + status +
-                ", brightness=" + brightness +
+                "name='" + name + " \\ " +
+                ", status=" + status + " \\ " +
+                ", brightness=" + brightness + " " +
                 '}';
     }
 }

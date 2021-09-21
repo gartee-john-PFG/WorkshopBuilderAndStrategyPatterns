@@ -11,8 +11,8 @@ public class CoffeeMaker extends Appliance {
     @Override
     public String toString() {
         return "CoffeeMaker{" +
-                "name='" + name + '\'' +
-                ", status=" + status +
+                "name='" + name + " \\ " +
+                ", status=" + status + " " +
                 '}';
     }
 }

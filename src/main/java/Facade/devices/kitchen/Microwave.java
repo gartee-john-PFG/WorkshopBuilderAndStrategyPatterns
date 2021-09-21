@@ -45,11 +45,11 @@ public class Microwave extends Appliance {
     @Override
     public String toString() {
         return "Microwave{" +
-                "name='" + name + '\'' +
-                ", status=" + status +
-                ", temp=" + temp +
-                ", time=" + time +
-                ", grillOn=" + grillOn +
+                "name='" + name + " \\ " +
+                ", status=" + status + " \\ " +
+                ", temp=" + temp + " \\ " +
+                ", time=" + time + " \\ " +
+                ", grillOn=" + grillOn + " " +
                 '}';
     }
 }

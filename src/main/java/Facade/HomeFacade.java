@@ -83,16 +83,16 @@ public class HomeFacade {
     @Override
     public String toString() {
         return "HomeFacade{" + "\n\t" +
-                "fan=" + fan + "\n\t" +
-                ", stick=" + stick + "\n\t" +
-                ", livingRoomLight=" + livingRoomLight + "\n\t" +
-                ", soundBar=" + soundBar + "\n\t" +
-                ", tv=" + tv + "\n\t" +
-                ", maker=" + maker + "\n\t" +
-                ", grill=" + grill + "\n\t" +
-                ", kitchenLight=" + kitchenLight + "\n\t" +
-                ", microwave=" + microwave + "\n\t" +
-                ", refrigerator=" + refrigerator + "\n" +
+                "fan=" + fan + ",\n\t" +
+                "stick=" + stick + ",\n\t" +
+                "livingRoomLight=" + livingRoomLight + ",\n\t" +
+                "soundBar=" + soundBar + ",\n\t" +
+                "tv=" + tv + ",\n\t" +
+                "maker=" + maker + ",\n\t" +
+                "grill=" + grill + ",\n\t" +
+                "kitchenLight=" + kitchenLight + ",\n\t" +
+                "microwave=" + microwave + ",\n\t" +
+                "refrigerator=" + refrigerator + ",\n" +
                 '}';
     }
 }

@@ -48,11 +48,11 @@ public class LivingRoomFireTV4KStick extends Appliance {
     @Override
     public String toString() {
         return "LivingRoomFireTV4KStick{" +
-                "name='" + name + '\'' +
-                ", status=" + status +
-                ", tv=" + tv +
-                ", appName='" + appName + '\'' +
-                ", contentName='" + contentName + '\'' +
+                "name=" + name + " \\ " +
+                "status=" + status + " \\ " +
+                "tv="  + tv + " \\ " +
+                "appName=" + appName + " \\ " +
+                "contentName=" + contentName + " " +
                 '}';
     }
 }

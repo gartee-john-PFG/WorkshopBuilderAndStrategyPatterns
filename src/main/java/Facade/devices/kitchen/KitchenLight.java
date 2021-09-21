@@ -11,8 +11,8 @@ public class KitchenLight extends Light {
     @Override
     public String toString() {
         return "KitchenLight{" +
-                "name='" + name + '\'' +
-                ", status=" + status +
+                "name='" + name + " \\ " +
+                ", status=" + status + " " +
                 '}';
     }
 }

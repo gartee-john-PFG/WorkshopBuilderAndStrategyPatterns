@@ -1,0 +1,12 @@
+HomeFacade{
+	fan=LivingRoomFan{name='LivingRoomFan \ , status=true \ , currentSpeed=2 },
+	stick=LivingRoomFireTV4KStick{name=LivingRoomFireTV4KStick \ status=true \ tv=LivingRoomTV{name='LivingRoomTV \ , status=true \ , currentVolume=1 \ , currentChannel=1 \ , volumeWhenMute=0 \ , source='HDMI ARC } \ appName=Netflix \ contentName=Star Wars: Episode IV A New Hope },
+	livingRoomLight=LivingRoomLight{name='LivingRoomLight \ , status=true \ , brightness=20 },
+	soundBar=LivingRoomSoundBar{name='LivingRoomSoundBar \ , status=true \ , soundMode='Dolby Atmos \ , currentVolume=20 \ , volumeWhenMute=0 \ , tv=LivingRoomTV{name='LivingRoomTV \ , status=true \ , currentVolume=1 \ , currentChannel=1 \ , volumeWhenMute=0 \ , source='HDMI ARC } },
+	tv=LivingRoomTV{name='LivingRoomTV \ , status=true \ , currentVolume=1 \ , currentChannel=1 \ , volumeWhenMute=0 \ , source='HDMI ARC },
+	maker=CoffeeMaker{name='CoffeeMaker \ , status=false },
+	grill=ElectricGrill{name='ElectricGrill \ , status=false \ , temp=0 },
+	kitchenLight=KitchenLight{name='KitchenLight \ , status=false },
+	microwave=Microwave{name='Microwave \ , status=false \ , temp=0 \ , time=0 \ , grillOn=false },
+	refrigerator=Refrigerator{name='Refrigerator \ , status=false \ , mode='normal },
+}

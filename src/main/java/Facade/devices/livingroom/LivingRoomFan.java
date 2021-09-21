@@ -11,9 +11,9 @@ public class LivingRoomFan extends Fan {
     @Override
     public String toString() {
         return "LivingRoomFan{" +
-                "name='" + name + '\'' +
-                ", status=" + status +
-                ", currentSpeed=" + currentSpeed +
+                "name='" + name + " \\ " +
+                ", status=" + status + " \\ " +
+                ", currentSpeed=" + currentSpeed + " " +
                 '}';
     }
 }

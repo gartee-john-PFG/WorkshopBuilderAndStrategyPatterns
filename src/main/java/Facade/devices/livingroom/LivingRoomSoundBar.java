@@ -19,12 +19,12 @@ public class LivingRoomSoundBar extends SoundBar {
     @Override
     public String toString() {
         return "LivingRoomSoundBar{" +
-                "name='" + name + '\'' +
-                ", status=" + status +
-                ", soundMode='" + soundMode + '\'' +
-                ", currentVolume=" + currentVolume +
-                ", volumeWhenMute=" + volumeWhenMute +
-                ", tv=" + tv +
+                "name='" + name + " \\ " +
+                ", status=" + status + " \\ " +
+                ", soundMode='" + soundMode + " \\ " +
+                ", currentVolume=" + currentVolume + " \\ " +
+                ", volumeWhenMute=" + volumeWhenMute + " \\ " +
+                ", tv=" + tv + " " +
                 '}';
     }
 }

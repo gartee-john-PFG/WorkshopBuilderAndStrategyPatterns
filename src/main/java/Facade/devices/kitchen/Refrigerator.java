@@ -25,9 +25,9 @@ public class Refrigerator extends Appliance {
     @Override
     public String toString() {
         return "Refrigerator{" +
-                "name='" + name + '\'' +
-                ", status=" + status +
-                ", mode='" + mode + '\'' +
+                "name='" + name + " \\ " +
+                ", status=" + status + " \\ " +
+                ", mode='" + mode + " " +
                 '}';
     }
 }

@@ -22,12 +22,12 @@ public class LivingRoomTV extends TV {
     @Override
     public String toString() {
         return "LivingRoomTV{" +
-                "name='" + name + '\'' +
-                ", status=" + status +
-                ", currentVolume=" + currentVolume +
-                ", currentChannel=" + currentChannel +
-                ", volumeWhenMute=" + volumeWhenMute +
-                ", source='" + source + '\'' +
+                "name='" + name + " \\ " +
+                ", status=" + status + " \\ " +
+                ", currentVolume=" + currentVolume + " \\ " +
+                ", currentChannel=" + currentChannel + " \\ " +
+                ", volumeWhenMute=" + volumeWhenMute + " \\ " +
+                ", source='" + source + " " +
                 '}';
     }
 }

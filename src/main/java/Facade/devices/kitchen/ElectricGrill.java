@@ -22,9 +22,9 @@ public class ElectricGrill extends Appliance {
     @Override
     public String toString() {
         return "ElectricGrill{" +
-                "name='" + name + '\'' +
-                ", status=" + status +
-                ", temp=" + temp +
+                "name='" + name + " \\ " +
+                ", status=" + status + " \\ " +
+                ", temp=" + temp + " " +
                 '}';
     }
 }
