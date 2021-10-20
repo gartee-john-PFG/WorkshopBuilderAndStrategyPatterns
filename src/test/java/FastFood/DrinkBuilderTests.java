@@ -133,6 +133,30 @@ public class DrinkBuilderTests {
     }
 
     @Test
+    public void drinkOrderFromAMenuCanBeCustomized(){
+        Map<MenuItem, Item> customMenu = new HashMap<>(){
+            {
+                put(MenuItem.large_drink, new DrinkBuilder()
+                        .of(DrinkType.coffee)
+                        .size(ItemSize.large)
+                        .atPrice(1F)
+                        .withModification(DrinkModification.none)
+                        .build()
+                );
+            }
+        };
+        Drink drink = new DrinkBuilder()
+                .fromMenu(customMenu)
+                .fromMenuItem(MenuItem.large_drink)
+                .build();
+        assertEquals(DrinkModification.none, drink.getModification());
+
+        Drink customizedDrink = drink.changeModification(DrinkModification.ice);
+
+        assertEquals(DrinkModification.ice, customizedDrink.getModification());
+    }
+
+    @Test
     public void buildAnExtraLargeMountainDewWithExtraIceThatCostsOneDollarTwentyFiveCents(){
         //  add drink builder implementation and remove comments from the asserts, below
 

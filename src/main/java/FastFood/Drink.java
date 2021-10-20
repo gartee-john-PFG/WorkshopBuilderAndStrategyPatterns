@@ -43,6 +43,10 @@ class Drink implements Item {
         return modification;
     }
 
+    public Drink changeModification(DrinkModification mod){
+        return new Drink(this.type, this.size, mod, this.price, this.name);
+    }
+
     @Override
     public String getName() {
         String drinkName = name == null ?
@@ -64,7 +68,6 @@ class Drink implements Item {
         drinkDescription += getOptionalModificationDescription();
         drinkDescription += (price == null ? "" : ":\t" + price);
         return drinkDescription.length() > 0 ? drinkDescription : "";
-
     }
 
     String getOptionalModificationDescription() {
@@ -79,4 +82,5 @@ class Drink implements Item {
 
         return size.toString().toUpperCase(Locale.ROOT);
     }
+
 }
