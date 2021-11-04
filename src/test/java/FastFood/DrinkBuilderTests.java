@@ -21,6 +21,54 @@ public class DrinkBuilderTests {
     }
 
     @Test
+    public void notSpecifyingDrinkTypeReturnsException(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            Drink drink = new DrinkBuilder()
+                    .build();
+        });
+    }
+
+    @Test
+    public void specifyingNullDrinkTypeReturnsException(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            Drink drink = new DrinkBuilder()
+                    .of(null)
+                    .build();
+        });
+    }
+
+    @Test
+    public void specifyingNullDrinkSizeReturnsException(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            Drink drink = new DrinkBuilder()
+                    .of(DrinkType.coke)
+                    .size(null)
+                    .build();
+        });
+    }
+    @Test
+    public void specifyingNullDrinModificationSetsNone(){
+        Drink coke = new DrinkBuilder()
+                .atPrice(1.5f)
+                .of(DrinkType.coke)
+                .withModification(null)
+                .build();
+
+
+        assertEquals(coke.modification, DrinkModification.none);
+    }
+
+    @Test
+    public void missingDrinkSizeReturnsException(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            Drink drink = new DrinkBuilder()
+                    .of(DrinkType.coke)
+                    .size(ItemSize.none)
+                    .build();
+        });
+    }
+
+    @Test
     public void aLargeCokeWithNoIce_ReturnsProperDescription(){
         Drink coke = new DrinkBuilder()
                 .of(DrinkType.coke)

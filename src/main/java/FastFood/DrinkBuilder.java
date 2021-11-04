@@ -14,6 +14,7 @@ public class DrinkBuilder {
 
     public DrinkBuilder() {
         modification = DrinkModification.ice;
+        drinkType = DrinkType.none;
         size = ItemSize.medium;
         this.price = null;
     }
@@ -39,6 +40,13 @@ public class DrinkBuilder {
     }
 
     public Drink build() {
+        Guard.againstInvalidDrinkType(drinkType);
+        Guard.againstInvalidSize(size);
+
+        if(modification == null){
+            modification = DrinkModification.none;
+        }
+
         return new Drink(this.drinkType, this.size, this.modification, this.price, this.name);
     }
 
