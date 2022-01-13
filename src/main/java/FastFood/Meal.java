@@ -94,4 +94,30 @@ public class Meal implements Item {
                 + "\n\t"
                 + price;
     }
+
+    public List<Sandwich> getSandwiches() {
+        return createCopyOfSandwiches();
+    }
+
+    private List<Sandwich> createCopyOfSandwiches() {
+        List<Sandwich> sandwiches = new ArrayList<>();
+
+        for(Sandwich sandwich : this.sandwiches){
+            sandwiches.add(new Sandwich(sandwich));
+        }
+
+        return sandwiches;
+    }
+
+    public List<Drink> getDrinks() {
+        return this.drinks;
+    }
+
+    public List<Side> getSides() {
+        return this.sides;
+    }
+
+    void updateSandwich(Sandwich sandwich, int index) {
+        sandwiches.set(index, sandwich);
+    }
 }

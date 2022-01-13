@@ -99,4 +99,8 @@ public class MealBuilder {
 
         return meal;
     }
+
+    public MealBuilder size(ItemSize size) {
+        return this;
+    }
 }

@@ -2,6 +2,9 @@ package FastFood;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MealBuilderTests {
@@ -13,24 +16,21 @@ public class MealBuilderTests {
     }
 
     @Test
-    public void defaultSingleBurgerMealReturnsOneOfEachMediumSizedItems() {
+    public void defaultSingleBurgerMenuItemReturnsOneOfEachMediumSizedItems() {
         Meal meal = new MealBuilder()
-                .withSandwich(new SandwichBuilder()
-                        .withName("SINGLE BURGER")
-                        .withWrapping(SandwichWrapping.bun)
-                        .withProtien(Protein.beef)
-                        .build())
-                .withDrink(new DrinkBuilder()
-                        .of(DrinkType.coke)
-                        .build())
-                .withSide(new SideBuilder()
-                        .of(SideOrder.french_fries)
-                        .build())
-                .atPrice(5.00f)
-                .withName("Single Burger Meal")
+                .fromMenuItem(MenuItem.single_burger_meal)
                 .build();
 
-        assertEquals("Single Burger Meal\n\tSINGLE BURGER\n\tSINGLE BEEF ON BUN\n\tMEDIUM FRENCH FRIES\n\tMEDIUM COKE W/ICE\n\t5.0", meal.toString());
+        assertEachItemInMealIsSingleOrMedium(meal);
+    }
+
+    private void assertEachItemInMealIsSingleOrMedium(Meal meal) {
+        assertEquals(1, meal.getSandwiches().size());
+        assertEquals(1, meal.getDrinks().size());
+        assertEquals(1, meal.getSides().size());
+        assertEquals(ItemSize.medium, meal.getDrinks().get(0).getSize());
+        assertEquals(ItemSize.medium, meal.getSides().get(0).getSize());
+        assertEquals(1, meal.getSandwiches().get(0).proteins.size());
     }
 
     @Test
@@ -41,34 +41,45 @@ public class MealBuilderTests {
 
         assertEquals("TRIPLE WONDERFUL MEAL\n\tTRIPLE BEEF ON BUN WITH PICKLES, ONION, CATSUP, AND MUSTARD\n\tMEDIUM FRENCH FRIES WITH SALT, PEPPER, AND CATSUP\n\tMEDIUM COKE W/ICE\n\t5.0", meal.toString());
     }
+
     @Test
-    public void defaultMealWithSmallSizeReturnsAllSmallItems() {
+    public void defaultMenuMealCanBeCustomizedOnIndividualItems() {
+        //  how would we customize the toppings on an existing sandwich from the menu?
+        Meal meal = new MealBuilder()
+                .fromMenuItem(MenuItem.triple_burger_meal)
+                .build();
+
+        Sandwich sandwich = meal.getSandwiches().get(0);
+        List<Condiment> condiments = sandwich.condiments;
+        condiments.add(Condiment.mayo);
+        meal.updateSandwich(sandwich, 0);
+
+        assertArrayEquals(condiments.toArray(), meal.getSandwiches().get(0).condiments.toArray());
+    }
+
+    @Test
+    public void defaultMenuMealWithSmallSizeReturnsAllSmallItems() {
 
     }
 
     @Test
-    public void defaultMealWithMediumSizeReturnsAllMediumItems() {
+    public void defaultMenuMealWithMediumSizeReturnsAllMediumItems() {
 
     }
 
     @Test
-    public void defaultMealWithLargeSizeReturnsAllLargeItems() {
+    public void defaultMenuMealWithLargeSizeReturnsAllLargeItems() {
 
     }
 
     @Test
-    public void defaultMealWithExLargeSizeReturnsAllExLargeItems() {
+    public void defaultMenuMealWithExLargeSizeReturnsAllExLargeItems() {
 
     }
 
     @Test
     public void customOrderMealReturnsItemsOrderedAtIndividualPricing() {
 
-    }
-
-    @Test
-    public void defaultMealCanBeCustomizedOnIndividualItems() {
-        //  how would we customize the toppings on an existing sandwich from the menu?
     }
 
     @Test

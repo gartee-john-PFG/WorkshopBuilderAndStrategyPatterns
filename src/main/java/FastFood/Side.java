@@ -28,7 +28,6 @@ public class Side implements Item {
 
     }
 
-
     @Override
     public String getName() {
         return this.type.toString().toUpperCase(Locale.ROOT);
@@ -87,5 +86,9 @@ public class Side implements Item {
     private String getSizeDescription() {
 
         return size.toString().toUpperCase(Locale.ROOT).replace("_", " ");
+    }
+
+    public Object getSize() {
+        return this.size;
     }
 }
